@@ -1,0 +1,39 @@
+#FACULTAD DE CIENCIAS UNAM
+#Programación - Grupo 9156
+#Nava Badillo Yessica Isabel.
+
+# Definimos la función 'secuencia_de_parentesis_bien_formados' que toma una cadena de caracteres 'secuencia' como entrada.
+def secuencia_de_parentesis_bien_formados(secuencia)-> bool:
+    # Inicializamos un contador en 0. Este contador llevará la cuenta de los paréntesis abiertos que aún no se han cerrado.
+    counter = 0
+
+    # revisamos cada carácter en la cadena de entrada.
+    for parentesis in secuencia:
+        # Si el carácter es un paréntesis de apertura, agregamos 1 al contador.
+        if parentesis == "(":
+            counter += 1
+        # Si el carácter es un paréntesis de cierre, restamos 1 al contador.
+        elif parentesis == ")":
+            counter -= 1
+
+        # Si en algún momento el contador es negativo, significa que hay un paréntesis de cierre sin un paréntesis de apertura correspondiente.
+        # En este caso, devolvemos False y un mensaje de error.
+        if counter < 0:
+            return False, "La cadena se rechaza porque hay un paréntesis de cierre sin un paréntesis de apertura correspondiente."
+
+    # Si después de recorrer toda la cadena el contador es 0, significa que todos los paréntesis están bien formados y devolvemos True.
+    if counter == 0:
+        return True, ""
+    # Si el contador no es 0, significa que hay un paréntesis de apertura sin un paréntesis de cierre correspondiente.
+    # En este caso, devolvemos False y un mensaje de error.
+    else:
+        return False, "La cadena se rechaza porque hay un paréntesis de apertura sin un paréntesis de cierre correspondiente."
+
+# interaccion con el lector, para ingresar la secuencia de paréntesis a analizar.
+secuencia_usuario = input("Por favor, ingresa la secuencia de paréntesis a analizar: ")
+
+# Llamamos a la función con la secuencia ingresada por el usuario.
+resultado, mensaje = secuencia_de_parentesis_bien_formados(secuencia_usuario  
+
+# Imprimimos el resultado. 
+print(resultado, mensaje)
